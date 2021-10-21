@@ -1,7 +1,9 @@
+
 import os
 import requests
 from flask import Flask, request
 from dotenv import load_dotenv
+DEBUG=os.environ.get("DEBUG", True)
 
 load_dotenv(dotenv_path="./.env.local")
 
@@ -14,6 +16,8 @@ if not UNSPLASH_KEY:
         "Please create .env.local file and insert there UNSPLASH_KEY")
 
 app = Flask(__name__)
+
+app.config["DEBUG"] = DEBUG
 
 
 @app.route("/new-image")
